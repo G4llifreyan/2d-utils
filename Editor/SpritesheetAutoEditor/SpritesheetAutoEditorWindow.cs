@@ -112,7 +112,10 @@ public class SpritesheetAutoEditorWindow : EditorWindow {
         } else {
             ruleTile.m_DefaultSprite = FindSprite(sprites, "TBLR");
         }
-        foreach(RuleTileConfiguration rtc in Enum.GetValues(typeof(RuleTileConfiguration))) {
+
+        Array configurations = Enum.GetValues(typeof(RuleTileConfiguration));
+        Array.Sort(configurations);
+        foreach (RuleTileConfiguration rtc in configurations) {
             if (rtc == RuleTileConfiguration.E) continue;
             RuleTile.TilingRule rule = new RuleTile.TilingRule();
             rule.ApplyNeighbors(rtc.GetRuleTileConfiguration(direction));

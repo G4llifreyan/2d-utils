@@ -3,9 +3,13 @@ using UnityEngine;
 
 public static class SpriteUtils {
 
-    public static Sprite GetSprite(Texture2D texture) {
+    public static Sprite GetSprite(Texture2D texture, float pixelsPerUnit) {
         Rect rec = new Rect(0, 0, texture.width, texture.height);
-        return Sprite.Create(texture, rec, new Vector2(0, 0), 1);
+        return Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), pixelsPerUnit);
+    }
+
+    public static Sprite GetSprite(Texture2D texture, float pixelsPerUnit, Rect rec) {
+        return Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), pixelsPerUnit);
     }
 
     public static Texture2D GetTexture(this Sprite sprite) {

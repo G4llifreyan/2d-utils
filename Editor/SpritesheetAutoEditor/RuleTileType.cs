@@ -12,14 +12,14 @@ public enum RuleTileConfiguration {
 public static class RuleTileConfigurationExtensions {
 
 
-    public static Dictionary<Vector3Int, int> GetRuleTileConfiguration(this RuleTileConfiguration rtc, RuleTileDirection dir) {
+    public static Dictionary<Vector3Int, int> GetRuleTileConfiguration(this RuleTileConfiguration rtc, RuleTileDirection dir, int full = 1, int empty = 2) {
         Vector3Int[] neighboursPositions = new Vector3Int[8] {
             new Vector3Int(-1,1,0), new Vector3Int(0,1,0), new Vector3Int(1,1,0),
             new Vector3Int(-1,0,0),                         new Vector3Int(1,0,0),
             new Vector3Int(-1,-1,0), new Vector3Int(0,-1,0), new Vector3Int(1,-1,0)
         };
         Dictionary<Vector3Int, int> dict = new Dictionary<Vector3Int, int>();
-        int[] neighbours = rtc.GetNeighbours(dir);
+        int[] neighbours = rtc.GetNeighbours(dir, full, empty);
         if (neighbours != null) {
             for (int i = 0; i < neighboursPositions.Length; i++) {
                 if (neighbours[i] != 0) {
@@ -30,13 +30,12 @@ public static class RuleTileConfigurationExtensions {
         return dict;
     }
 
-    private static int[] GetNeighbours(this RuleTileConfiguration rtc, RuleTileDirection dir) {
-        int up = 1;
-        int down = 1;
-        int left = 1;
-        int right = 1;
-        int corner = 1;
-        int empty = 2;
+    private static int[] GetNeighbours(this RuleTileConfiguration rtc, RuleTileDirection dir, int full = 1, int empty = 2) {
+        int up = full;
+        int down = full;
+        int left = full;
+        int right = full;
+        int corner = full;
 
         int[] neighbours = null;
         switch (rtc) {
