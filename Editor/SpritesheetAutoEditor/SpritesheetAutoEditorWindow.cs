@@ -113,8 +113,22 @@ public class SpritesheetAutoEditorWindow : EditorWindow {
             ruleTile.m_DefaultSprite = FindSprite(sprites, "TBLR");
         }
 
-        Array configurations = Enum.GetValues(typeof(RuleTileConfiguration));
-        Array.Sort(configurations);
+        List<RuleTileConfiguration> configurations = Enum.GetValues(typeof(RuleTileConfiguration)).Cast<RuleTileConfiguration>().ToList();
+        configurations = new List<RuleTileConfiguration>() {
+            RuleTileConfiguration.TL, RuleTileConfiguration.T, RuleTileConfiguration.TR,
+            RuleTileConfiguration.L, RuleTileConfiguration.N, RuleTileConfiguration.R,
+            RuleTileConfiguration.BL, RuleTileConfiguration.B, RuleTileConfiguration.BR,
+            RuleTileConfiguration.TLC, RuleTileConfiguration.TRC, RuleTileConfiguration.BLC, RuleTileConfiguration.BRC,
+            RuleTileConfiguration.TRC_BLC, RuleTileConfiguration.TLC_TRC, RuleTileConfiguration.BLC_BRC, RuleTileConfiguration.TLC_BLC,
+            RuleTileConfiguration.TLC_BRC, RuleTileConfiguration.TRC_BLC, RuleTileConfiguration.TLC_TRC_BLC_BRC,
+            RuleTileConfiguration.TRC_BLC_BRC, RuleTileConfiguration.TLC_BLC_BRC, RuleTileConfiguration.TLC_TRC_BLC, RuleTileConfiguration.TLC_TRC_BRC,
+            RuleTileConfiguration.TLR, RuleTileConfiguration.LR, RuleTileConfiguration.BLR, RuleTileConfiguration.TBL, RuleTileConfiguration.TB, RuleTileConfiguration.TBR, RuleTileConfiguration.TBLR,
+            RuleTileConfiguration.TL_BRC, RuleTileConfiguration.TR_BLC, RuleTileConfiguration.BL_TRC, RuleTileConfiguration.BR_TLC,
+            RuleTileConfiguration.L_BRC, RuleTileConfiguration.T_BLC, RuleTileConfiguration.B_TRC, RuleTileConfiguration.R_TLC,
+            RuleTileConfiguration.T_BRC, RuleTileConfiguration.R_BLC, RuleTileConfiguration.L_TRC, RuleTileConfiguration.B_TLC,
+            RuleTileConfiguration.L_TRC_BRC, RuleTileConfiguration.T_BLC_BRC, RuleTileConfiguration.B_TLC_TRC, RuleTileConfiguration.R_TLC_BLC
+        };
+
         foreach (RuleTileConfiguration rtc in configurations) {
             if (rtc == RuleTileConfiguration.E) continue;
             RuleTile.TilingRule rule = new RuleTile.TilingRule();
